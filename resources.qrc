@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/bed.png</file>
+        <file>images/dish.png</file>
+        <file>images/dog.png</file>
+        <file>images/flowers.png</file>
+        <file>images/homework.png</file>
+        <file>images/Noto_Emoji_Oreo_2699.svg.png</file>
+        <file>images/read.png</file>
+        <file>images/sad.png</file>
+        <file>images/star.png</file>
+        <file>images/menu.png</file>
+        <file>images/menu2.png</file>
+        <file>images/menu22.png</file>
+        <file>images/menuBIG.jpg</file>
+        <file>images/MENU3.jpg</file>
+        <file>images/menu1.jpg</file>
+    </qresource>
+</RCC>
