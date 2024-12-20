@@ -9,8 +9,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+# Найти необходимые компоненты Qt
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
 
 # Добавление всех исходных файлов в проект
 set(PROJECT_SOURCES
@@ -24,6 +25,8 @@ set(PROJECT_SOURCES
     todolistwindow.cpp
     todolistwindow.h
     todolistwindow.ui
+    rectanglewidget.h
+    rectanglewidget.cpp
 )
 
 # Использование qt_add_executable для Qt 6
@@ -32,7 +35,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
-        rectanglewidget.h rectanglewidget.cpp
     )
 else()
     if(ANDROID)
@@ -47,7 +49,7 @@ else()
 endif()
 
 # Привязка Qt
-target_link_libraries(untitled PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(untitled PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
 
 # Установка свойств для macOS и Windows
 set_target_properties(untitled PROPERTIES

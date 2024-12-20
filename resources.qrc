@@ -21,5 +21,6 @@
         <file>images/flowers2.png</file>
         <file>images/homework2.png</file>
         <file>images/read2.png</file>
+        <file>images/song.mp3</file>
     </qresource>
 </RCC>

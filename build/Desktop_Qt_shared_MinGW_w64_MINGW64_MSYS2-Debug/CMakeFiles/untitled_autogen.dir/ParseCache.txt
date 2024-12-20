@@ -1152,6 +1152,15 @@ C:/Users/pprik/Documents/QT COURSE/untitled/mainwindow.h
  mdp:C:/msys64/mingw64/include/qt6/QtGui/qtransform.h
  mdp:C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h
  mdp:C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/QAudioOutput
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/QMediaPlayer
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qaudio.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qaudiooutput.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qmediaplayer.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qtaudio.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qtmultimedia-config.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qtmultimediaexports.h
+ mdp:C:/msys64/mingw64/include/qt6/QtMultimedia/qtmultimediaglobal.h
  mdp:C:/msys64/mingw64/include/qt6/QtWidgets/QLabel
  mdp:C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow
  mdp:C:/msys64/mingw64/include/qt6/QtWidgets/qframe.h

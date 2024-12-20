@@ -337,6 +337,15 @@ C:/Users/pprik/Documents/QT\ COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_M
   C:/msys64/mingw64/include/qt6/QtGui/qtransform.h \
   C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
   C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/QAudioOutput \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/QMediaPlayer \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qaudio.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qaudiooutput.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qmediaplayer.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qtaudio.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qtmultimedia-config.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qtmultimediaexports.h \
+  C:/msys64/mingw64/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   C:/msys64/mingw64/include/qt6/QtWidgets/QLabel \
   C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
   C:/msys64/mingw64/include/qt6/QtWidgets/qframe.h \

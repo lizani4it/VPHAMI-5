@@ -4,7 +4,8 @@
 #include "todolistwindow.h"
 #include <QLabel>
 #include <QPixmap>
-
+#include <QMediaPlayer>
+#include <QAudioOutput>
 #include <QPalette>
 #include <QBrush>
 
@@ -21,6 +22,13 @@ MainWindow::MainWindow(QWidget *parent)
     palette.setBrush(QPalette::Window, QBrush(backgroundPixmap));
     this->setPalette(palette);
 
+    player = new QMediaPlayer(this);
+    audioOutput = new QAudioOutput(this);
+
+    player->setAudioOutput(audioOutput);
+    player->setSource(QUrl("qrc:/images/song.mp3"));
+    audioOutput->setVolume(0.1);
+    player->play();
 
     QString originalText = ui->label->text();
 
@@ -69,6 +77,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::closeEvent(QCloseEvent *event) {
+    QApplication::quit();
+}
 
 void MainWindow::openToDoList() {
     todolistwindow *todoWindow = new todolistwindow(this);

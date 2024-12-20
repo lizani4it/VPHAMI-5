@@ -24,6 +24,7 @@
 #include <QStandardPaths>
 #include <QTextStream>
 
+
 ScheduleWindow::ScheduleWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ScheduleWindow)
@@ -139,6 +140,7 @@ void ScheduleWindow::closeEvent(QCloseEvent *event)
 {
     saveDataToJson();
     event->accept();
+    QApplication::quit();
 }
 
 void ScheduleWindow::onMenuCloseTriggered() {
