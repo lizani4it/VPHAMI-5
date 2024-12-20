@@ -53,7 +53,14 @@ ScheduleWindow::ScheduleWindow(QWidget *parent) :
         QTableWidgetItem *item = new QTableWidgetItem(daysOfWeek[column]);
         item->setTextAlignment(Qt::AlignCenter);
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        item->setForeground(QBrush(Qt::white));
+
+        QFont font = item->font();
+        font.setBold(true);
+        item->setFont(font);
+
         ui->tableWidget->setItem(0, column, item);
+
     }
 
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
