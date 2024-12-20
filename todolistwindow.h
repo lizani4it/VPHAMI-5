@@ -2,16 +2,11 @@
 #define TODOLISTWINDOW_H
 
 #include <QMainWindow>
-#include <QTableWidgetItem>
-#include <QPushButton>
 #include <QSystemTrayIcon>
 #include <QTimer>
-#include <QTime>
-#include <QWidget>
-#include <QCloseEvent>
-#include <QMenu>
-#include <QAction>
-#include <QContextMenuEvent>
+#include <QPushButton>
+#include <QTableWidgetItem>
+#include <QSqlDatabase>
 
 namespace Ui {
 class todolistwindow;
@@ -25,34 +20,33 @@ public:
     explicit todolistwindow(QWidget *parent = nullptr);
     ~todolistwindow();
 
-private slots:
-    void toggleEditMode();
-    void saveChanges();
-    void checkTimeAndNotify();
-    void onTimeEdited(int row, int column);
-    void onBackButtonClicked();
-    void updateEditModeLabel();
-    void resizeEvent(QResizeEvent *event);
-    void showContextMenu(const QPoint &pos);
-    void addRow();
-    void removeRows();
-
-
-protected:
-    void closeEvent(QCloseEvent *event) override;
-
 private:
     Ui::todolistwindow *ui;
-
     bool editMode;
+    QSystemTrayIcon *trayIcon;
+    QTimer *timer;
     QPushButton *gearButton;
     QPushButton *checkButton;
 
-    QSystemTrayIcon *trayIcon;
-    QTimer *timer;
-    bool isValidTime(const QString &time);
-    void loadData();
+    void initializeDatabase(); // Добавьте это объявление
     void saveData();
+    void loadData();
+    bool isValidTime(const QString &time);
+    void updateEditModeLabel();
+    void checkTimeAndNotify();
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+
+private slots:
+    void toggleEditMode();
+    void showContextMenu(const QPoint &pos);
+    void addRow();
+    void removeRows();
+    void saveChanges();
+    void onBackButtonClicked();
+    void onTimeEdited(int row, int column);
 };
 
 #endif // TODOLISTWINDOW_H

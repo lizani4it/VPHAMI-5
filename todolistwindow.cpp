@@ -6,7 +6,6 @@
 #include <QRegularExpression>
 #include <QSystemTrayIcon>
 #include <QTime>
-#include <QSettings>
 #include <QTimer>
 #include <QCloseEvent>
 #include "mainwindow.h"
@@ -14,8 +13,11 @@
 #include <QAction>
 #include <QContextMenuEvent>
 #include <QDateTime>
-#include <QSystemTrayIcon>
 #include <QVBoxLayout>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QStandardPaths>
 
 todolistwindow::todolistwindow(QWidget *parent)
     : QMainWindow(parent),
@@ -26,8 +28,8 @@ todolistwindow::todolistwindow(QWidget *parent)
     setMinimumSize(1200, 900);
     setMaximumSize(1200, 900);
 
-    loadData();
-
+    initializeDatabase(); // Инициализация базы данных
+    loadData(); // Загрузка данных из базы данных
 
     QPixmap backgroundPixmap(":/images/menu1.jpg");
     backgroundPixmap = backgroundPixmap.scaled(this->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
@@ -38,14 +40,10 @@ todolistwindow::todolistwindow(QWidget *parent)
     ui->tableWidget->setRowCount(15);
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setShowGrid(false);
-
     ui->tableWidget->setFixedHeight(550); // Установите желаемую ширину
-
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setStyleSheet("QTableWidget {background-color: rgba(255,255,255,0.5);}");
-
     ui->tableWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
 
     gearButton = new QPushButton("⚙", this);
     gearButton->setGeometry(10, 30, 40, 40);
@@ -59,7 +57,6 @@ todolistwindow::todolistwindow(QWidget *parent)
     connect(checkButton, &QPushButton::clicked, this, &todolistwindow::saveChanges);
 
     connect(ui->backButton, &QPushButton::clicked, this, &todolistwindow::onBackButtonClicked);
-
     connect(ui->tableWidget, &QTableWidget::cellChanged, this, &todolistwindow::onTimeEdited);
 
     trayIcon = new QSystemTrayIcon(this);
@@ -70,14 +67,30 @@ todolistwindow::todolistwindow(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &todolistwindow::checkTimeAndNotify);
     timer->start(60000);
 
-
     ui->editModeLabel->setVisible(false);
     ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableWidget, &QWidget::customContextMenuRequested, this, &todolistwindow::showContextMenu);
+}
 
-    trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(QIcon(":/images/menu22.png"));
-    trayIcon->setVisible(true);
+void todolistwindow::initializeDatabase() {
+    qDebug() << "Инициализация базы данных...";
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/todolist.db";
+    db.setDatabaseName(dbPath);
+
+    qDebug() << "Путь к базе данных:" << dbPath;
+
+    if (!db.open()) {
+        QMessageBox::critical(this, "Ошибка", "Не удалось открыть базу данных: " + db.lastError().text());
+        return;
+    }
+
+    QSqlQuery query;
+    if (!query.exec("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, time TEXT, note TEXT)")) {
+        QMessageBox::critical(this, "Ошибка", "Не удалось создать таблицу: " + query.lastError().text());
+    } else {
+        qDebug() << "Таблица успешно создана или уже существует.";
+    }
 }
 
 void todolistwindow::resizeEvent(QResizeEvent *event)
@@ -93,7 +106,7 @@ void todolistwindow::resizeEvent(QResizeEvent *event)
     int tableHeight = this->height() * 0.8;
 
     int tableX = (this->width() - tableWidth) / 2;
-    int tableY = (this->height() - tableHeight) / 2;
+    int tableY = (this-> height() - tableHeight) / 2;
 
     ui->tableWidget->setGeometry(tableX, tableY, tableWidth, tableHeight);
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -103,13 +116,23 @@ void todolistwindow::resizeEvent(QResizeEvent *event)
 
 todolistwindow::~todolistwindow()
 {
+    saveData(); // Сохраняем данные перед уничтожением
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection); // Закрываем соединение с базой данных
     delete ui;
 }
 
-void todolistwindow::closeEvent(QCloseEvent *event)
-{
-    saveData();
-    event->accept();
+void todolistwindow::closeEvent(QCloseEvent *event) {
+    qDebug() << "Закрытие окна...";
+    saveData(); // Сохраняем данные перед закрытием
+
+    // Убедитесь, что база данных закрыта корректно
+    QSqlDatabase db = QSqlDatabase::database();
+    if (db.isOpen()) {
+        db.close();
+        qDebug() << "База данных закрыта.";
+    }
+
+    event->accept(); // Принять событие закрытия
 }
 
 void todolistwindow::toggleEditMode()
@@ -135,7 +158,7 @@ void todolistwindow::showContextMenu(const QPoint &pos)
 {
     QMenu contextMenu(this);
     QAction *addRowAction = new QAction("Добавить строку", this);
-    QAction *removeRowsAction = new QAction ("Удалить строки", this);
+    QAction *removeRowsAction = new QAction("Удалить строки", this);
     contextMenu.addAction(addRowAction);
     contextMenu.addAction(removeRowsAction);
     connect(addRowAction, &QAction::triggered, this, &todolistwindow::addRow);
@@ -213,36 +236,75 @@ void todolistwindow::onBackButtonClicked()
     this->close();
 }
 
-void todolistwindow::checkTimeAndNotify()
-{
+void todolistwindow::checkTimeAndNotify() {
     QDateTime currentDateTime = QDateTime::currentDateTime();
     QString currentTimeString = currentDateTime.toString("hh:mm");
+    qDebug() << "Текущее время:" << currentTimeString;
+
     for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
-        QString timeString = ui->tableWidget->item(row, 0)->text();
-        QString note = ui->tableWidget->item(row, 1)->text();
-        if (currentTimeString == timeString) {
-            trayIcon->showMessage("Время " + timeString, "Задача: " + note, QSystemTrayIcon::Information, 10000);
+        if (ui->tableWidget->item(row, 0) != nullptr) {
+            QString timeString = ui->tableWidget->item(row, 0)->text();
+            QString note = ui->tableWidget->item(row, 1) ? ui->tableWidget->item(row, 1 )->text() : "";
+            qDebug() << "Проверка времени для строки" << row << ": " << timeString;
+
+            if (currentTimeString == timeString) {
+                trayIcon->showMessage("Время " + timeString, "Задача: " + note, QSystemTrayIcon::Information, 10000);
+                qDebug() << "Уведомление отправлено для задачи:" << note;
+            }
+        } else {
+            qDebug() << "Элемент времени не найден в строке" << row;
         }
     }
 }
 
-void todolistwindow::saveData()
-{
-    QSettings settings("MyCompany", "ToDoListApp");
+void todolistwindow::saveData() {
+    QSqlDatabase db = QSqlDatabase::database();
+    if (!db.isOpen()) {
+        qDebug() << "База данных не открыта. Невозможно сохранить данные.";
+        return;
+    }
+
+    QSqlQuery query;
+
+    // Удаляем старые данные
+    if (!query.exec("DELETE FROM tasks")) {
+        qDebug() << "Ошибка при удалении данных:" << query.lastError().text();
+    }
+
     for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
-        settings.setValue(QString("row%1_time").arg(row), ui->tableWidget->item(row, 0)->text());
-        settings.setValue(QString("row%1_note").arg(row), ui->tableWidget->item(row, 1)->text());
+        if (ui->tableWidget->item(row, 0) != nullptr && ui->tableWidget->item(row, 1) != nullptr) {
+            QString time = ui->tableWidget->item(row, 0)->text();
+            QString note = ui->tableWidget->item(row, 1)->text();
+
+            query.prepare("INSERT INTO tasks (time, note) VALUES (?, ?)");
+            query.addBindValue(time);
+            query.addBindValue(note);
+            if (!query.exec()) {
+                qDebug() << "Ошибка при вставке данных:" << query.lastError().text();
+            }
+        }
     }
 }
 
-void todolistwindow::loadData()
-{
-    QSettings settings("MyCompany", "ToDoListApp");
-    for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
-        QString time = settings.value(QString("row%1_time").arg(row), "7:00").toString();
-        QString note = settings.value(QString("row%1_note").arg(row), "Завтрак").toString();
+void todolistwindow::loadData() {
+    QSqlDatabase db = QSqlDatabase::database();
+    if (!db.isOpen()) {
+        qDebug() << "База данных не открыта. Невозможно загрузить данные.";
+        return;
+    }
+
+    QSqlQuery query("SELECT * FROM tasks");
+    ui->tableWidget->setRowCount(0); // Очистите таблицу перед загрузкой данных
+
+    while (query.next()) {
+        int row = ui->tableWidget->rowCount();
+        ui->tableWidget->insertRow(row);
+
+        QString time = query.value("time").toString();
+        QString note = query.value("note").toString();
+
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(time));
-        ui->tableWidget->setItem(row, 1, new QTableWidgetItem (note));
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(note));
 
         QTableWidgetItem *timeItem = ui->tableWidget->item(row, 0);
         if (timeItem) {
@@ -251,13 +313,16 @@ void todolistwindow::loadData()
     }
 }
 
-void todolistwindow::onTimeEdited(int row, int column)
-{
+void todolistwindow::onTimeEdited(int row, int column) {
     if (column == 0) {
-        QString currentTime = ui->tableWidget->item(row, column)->text();
-        if (!isValidTime(currentTime)) {
-            ui->tableWidget->item(row, column)->setText("07:00");
-            QMessageBox::warning(this, "Ошибка", "Время введено некорректно. Используйте формат ЧЧ:ММ.");
+        if (ui->tableWidget->item(row, column) != nullptr) {
+            QString currentTime = ui->tableWidget->item(row, column)->text();
+            if (!isValidTime(currentTime)) {
+                ui->tableWidget->item(row, column)->setText("07:00");
+                QMessageBox::warning(this, "Ошибка", "Время введено некорректно. Используйте формат ЧЧ:ММ.");
+            }
+        } else {
+            qDebug() << "Элемент не существует в строке" << row << "и столбце" << column;
         }
     }
 }

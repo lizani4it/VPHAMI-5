@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Найти необходимые компоненты Qt
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia Sql)
 
 # Добавление всех исходных файлов в проект
 set(PROJECT_SOURCES
@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
     todolistwindow.ui
     rectanglewidget.h
     rectanglewidget.cpp
+    database.cpp  # Добавьте файл базы данных
+    database.h    # Добавьте заголовок базы данных
 )
 
 # Использование qt_add_executable для Qt 6
@@ -35,6 +37,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
+        database.h database.cpp
     )
 else()
     if(ANDROID)
@@ -49,7 +52,7 @@ else()
 endif()
 
 # Привязка Qt
-target_link_libraries(untitled PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
+target_link_libraries(untitled PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia Qt${QT_VERSION_MAJOR}::Sql)
 
 # Установка свойств для macOS и Windows
 set_target_properties(untitled PROPERTIES
