@@ -15,23 +15,25 @@
 RectangleWidget::RectangleWidget(QWidget *parent, const QString &defaultImage, const QColor &color, int rectWidth, int rectHeight, const QString &text)
     : QWidget(parent), rectColor(color), width_(rectWidth), height_(rectHeight), defaultImagePath(defaultImage), currentImagePath(defaultImage)
 {
-    setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);  // Фиксированная ширина, расширение по вертикали
+    setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
     setFixedSize(width_, height_);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
 
     imageLabel = new QLabel(this);
-    imageLabel->setAlignment(Qt::AlignCenter);  // Центрируем картинку
-    imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);  // Разрешаем картинке заполнять пространство по вертикали, фиксируем высоту
+    imageLabel->setAlignment(Qt::AlignCenter);
+    imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     layout->addWidget(imageLabel);
 
-    layout->addItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Expanding));  // Отступ по вертикали
+    layout->addItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Expanding));
+    layout->setContentsMargins(0, 10, 0, 0);
 
     QHBoxLayout *textAndButtonLayout = new QHBoxLayout();
 
-    textLabel = new QLabel(text, this);  // Use the passed text
+    textLabel = new QLabel(text, this);
     textLabel->setAlignment(Qt::AlignLeft | Qt::AlignBottom);
     textLabel->setFont(QFont("Arial", 12, QFont::Bold));
+    textLabel->setStyleSheet("color: white;");
     textAndButtonLayout->addWidget(textLabel);
 
     gearButton = new QPushButton("⚙", this);
@@ -43,22 +45,21 @@ RectangleWidget::RectangleWidget(QWidget *parent, const QString &defaultImage, c
 
     setLayout(layout);
 
-    // Устанавливаем изображение по умолчанию
-    setImage(QPixmap(defaultImagePath));  // Устанавливаем изображение по умолчанию
+    setImage(QPixmap(defaultImagePath));
 
     connect(gearButton, &QPushButton::clicked, this, &RectangleWidget::showContextMenu);
 }
 
 void RectangleWidget::setText(const QString &text)
 {
-    textLabel->setText(text);  // Обновляем текст
+    textLabel->setText(text);
 }
 
 void RectangleWidget::setImage(const QPixmap &image)
 {
     if (!image.isNull()) {
         imageLabel->setPixmap(image.scaled(80, 80, Qt::KeepAspectRatio));
-        currentImagePath = defaultImagePath;  // Устанавливаем путь к текущему изображению
+        currentImagePath = defaultImagePath;
     } else {
         qDebug() << "Не удалось установить изображение.";
     }
@@ -71,18 +72,19 @@ void RectangleWidget::showContextMenu()
 
     QAction *editTextAction = new QAction("Изменить текст", this);
     QAction *editImageAction = new QAction("Изменить картинку", this);
-    QAction *resetImageAction = new QAction("Вернуть картинку", this);  // Новое действие для сброса картинки
+    QAction *resetImageAction = new QAction("Вернуть картинку", this);
 
     contextMenu.addAction(editTextAction);
     contextMenu.addAction(editImageAction);
-    contextMenu.addAction(resetImageAction);  // Добавляем действие для сброса картинки
+    contextMenu.addAction(resetImageAction);
 
-    connect(editTextAction, &QAction::triggered, this, &RectangleWidget::changeText);  // Выбор изменения текста
-    connect(editImageAction, &QAction::triggered, this, &RectangleWidget::changeImage);  // Выбор изменения картинки
-    connect(resetImageAction, &QAction::triggered, this, &RectangleWidget::resetImage);  // Сброс картинки
+    connect(editTextAction, &QAction::triggered, this, &RectangleWidget::changeText);
+    connect(editImageAction, &QAction::triggered, this, &RectangleWidget::changeImage);
+    connect(resetImageAction, &QAction::triggered, this, &RectangleWidget::resetImage);
 
-    contextMenu.exec(QCursor::pos());  // Показываем контекстное меню в текущей позиции курсора
+    contextMenu.exec(QCursor::pos());
 }
+
 
 void RectangleWidget::changeText()
 {
@@ -101,8 +103,7 @@ void RectangleWidget::changeImage()
                                          {"Оставить", "Выбрать"}, 0, false, &ok);
 
     if (ok && text == "Оставить") {
-        qDebug() << "User  chose to keep the current image.";
-        return;  // Завершаем функцию, не меняя ничего
+        return;
     }
     else if (ok && text == "Выбрать") {
         QString imagePath = QFileDialog::getOpenFileName(this, "Выберите картинку", "", "Image Files (*.png *.jpg *.bmp)");
@@ -111,7 +112,7 @@ void RectangleWidget::changeImage()
             QPixmap newImage(imagePath);
             if (!newImage.isNull()) {
                 imageLabel->setPixmap(newImage.scaled(80, 80, Qt::KeepAspectRatio));
-                currentImagePath = imagePath;  // Обновляем путь к изображению
+                currentImagePath = imagePath;
             } else {
                 qDebug() << "Не удалось загрузить новое изображение из пути:" << imagePath;
             }
@@ -136,7 +137,7 @@ void RectangleWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     QColor transparentColor = rectColor;
-    transparentColor.setAlpha(100);
+    transparentColor.setAlpha(170);
 
     painter.setBrush(QBrush(transparentColor));
     painter.setPen(Qt::NoPen);

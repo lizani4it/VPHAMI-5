@@ -71,14 +71,12 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::openToDoList() {
-    // Создаем и показываем окно "Список дел"
     todolistwindow *todoWindow = new todolistwindow(this);
     todoWindow->show();
-    this->hide();  // Закрыть главное окно
+    this->hide();
 }
 
 void MainWindow::openSchedule() {
-    // Создаем и показываем окно "Расписание"
     ScheduleWindow *scheduleWindow = new ScheduleWindow(this);
     scheduleWindow->show();
     this->hide();

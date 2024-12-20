@@ -33,8 +33,8 @@ private slots:
     void onBackButtonClicked();
     void updateEditModeLabel();
     void resizeEvent(QResizeEvent *event);
-    void showContextMenu(const QPoint &pos);  // Добавляем слот для контекстного меню
-    void addRow();  // Слот для добавления строки
+    void showContextMenu(const QPoint &pos);
+    void addRow();
     void removeRows();
 
 
@@ -44,11 +44,11 @@ protected:
 private:
     Ui::todolistwindow *ui;
 
-    bool editMode;  // Переменная для отслеживания режима редактирования
-    QPushButton *gearButton;  // Кнопка шестерёнки
-    QPushButton *checkButton;  // Кнопка галочки
+    bool editMode;
+    QPushButton *gearButton;
+    QPushButton *checkButton;
 
-    QSystemTrayIcon *trayIcon;  // Иконка в системном трее
+    QSystemTrayIcon *trayIcon;
     QTimer *timer;
     bool isValidTime(const QString &time);
     void loadData();

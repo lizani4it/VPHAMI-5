@@ -24,27 +24,23 @@ public:
 
     QLabel *imageLabel;
     QLabel *textLabel;
-    // Метод для сброса картинки на дефолтную
     void resetImage();
 
 
 public slots:
-   // void toggleEditMode();  // Переключить режим редактирования
-    void changeText();  // Изменить текст
-    void changeImage();  // Изменить картинку
+    void changeText();
+    void changeImage();
     void showContextMenu();
-void paintEvent(QPaintEvent *event);    // Показать контекстное меню
+    void paintEvent(QPaintEvent *event);
 
 private:
 
     QPushButton *gearButton;
 
-      // Путь к дефолтной картинке
     QColor rectColor;
     int width_;
     int height_;
 
-     // Состояние изображения (например, "star", "sad", etc.)
 };
 
 #endif // RECTANGLEWIDGET_H

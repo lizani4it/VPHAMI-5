@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QLabel>  // Для использования QLabel
+#include <QLabel>
 
 
 namespace Ui {
@@ -24,7 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QLabel *backgroundLabel;  // Объявляем переменную для QLabel
+    QLabel *backgroundLabel;
 };
 
 #endif // MAINWINDOW_H

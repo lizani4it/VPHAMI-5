@@ -29,8 +29,8 @@ ScheduleWindow::ScheduleWindow(QWidget *parent) :
     ui(new Ui::ScheduleWindow)
 {
     ui->setupUi(this);
-    setMinimumSize(1200, 900);
-    setMaximumSize(1200, 1000);
+    setMinimumSize(1100, 800);
+    setMaximumSize(1100, 800);
 
     loadDataFromJson();
 
@@ -61,29 +61,32 @@ ScheduleWindow::ScheduleWindow(QWidget *parent) :
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     for (int i = 0; i < 7; ++i) {
-        ui->tableWidget->setColumnWidth(i, 118);
+        ui->tableWidget->setColumnWidth(i, 114);
     }
 
     for (int i = 1; i < 7; ++i) {
-        ui->tableWidget->setRowHeight(i, 130);
+        ui->tableWidget->setRowHeight(i, 113);
     }
 
-    ui->tableWidget->setFixedSize(830, 860);
+    ui->tableWidget->setFixedSize(800, 730);
 
     connect(ui->tableWidget, &QTableWidget::cellPressed, this, &ScheduleWindow::onCellPressed);
     connect(ui->actionCloseMen, &QAction::triggered, this, &ScheduleWindow::onMenuCloseTriggered);
 
     QVBoxLayout *leftLayout = new QVBoxLayout();
+    leftLayout->setContentsMargins(20, 50, 20, 10);
+
+
     int rectWidth = 180;
     int rectHeight = 100;
 
     ui->tableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     leftLayout->addWidget(new RectangleWidget(this, ":/images/bed2.png", QColor("#FF6347"), rectWidth, rectHeight, "Убраться"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/dish2.png", QColor("pink"), rectWidth, rectHeight, "Помыть посуду"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/dog2.png", QColor("#4682B4"), rectWidth, rectHeight, "Прогулка"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/flowers2.png", QColor(34, 139, 34), rectWidth, rectHeight, "Полить цветы"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/read2.png", QColor("#FFD700"), rectWidth, rectHeight, "Почитать книгу"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/homework2.png", QColor(255, 165, 0), rectWidth, rectHeight, "Сделать д/з"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/dish2.png", QColor("#4682B4"), rectWidth, rectHeight, "Помыть посуду"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/dog2.png", QColor("#32CD32"), rectWidth, rectHeight, "Прогулка"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/flowers2.png",  QColor ("#FFD700"), rectWidth, rectHeight, "Полить цветы"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/read2.png", QColor("#FF69B4"), rectWidth, rectHeight, "Почитать книгу"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/homework2.png", QColor("#FF4500"), rectWidth, rectHeight, "Сделать д/з"));
 
     QHBoxLayout *mainLayout = new QHBoxLayout();
     mainLayout->addLayout(leftLayout);
@@ -92,6 +95,7 @@ ScheduleWindow::ScheduleWindow(QWidget *parent) :
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+
 
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
@@ -108,7 +112,7 @@ ScheduleWindow::ScheduleWindow(QWidget *parent) :
     };
 
     for (int column = 0; column < ui->tableWidget->columnCount(); ++column) {
-        for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
+        for (int row = 0; row < 1; ++row) {
             QTableWidgetItem *item = ui->tableWidget->item(row, column);
             if (!item) {
                 item = new QTableWidgetItem();

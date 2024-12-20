@@ -30,8 +30,8 @@ public:
 
 
 private slots:
-    void onCellPressed(int row, int column);  // Добавляем слот для обработки нажатий на ячейки
-    void onMenuCloseTriggered(); // Объявление слота
+    void onCellPressed(int row, int column);
+    void onMenuCloseTriggered();
     void onBackButtonClicked();
     void saveDataToJson();
     void loadDataFromJson();
