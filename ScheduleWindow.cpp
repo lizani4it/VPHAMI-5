@@ -3,8 +3,8 @@
 #include <QTableWidgetItem>
 #include "RectangleWidget.h"
 #include <QPixmap>
-#include <QHeaderView>  // Для изменения заголовков и прокрутки
-#include <QLabel>       // Для использования QLabel
+#include <QHeaderView>
+#include <QLabel>
 #include <QIcon>
 #include "mainwindow.h"
 #include <QWidget>
@@ -17,7 +17,6 @@
 #include <QVBoxLayout>
 #include <QCloseEvent>
 #include <QSettings>
-// Добавьте этот заголовочный файл
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -25,126 +24,130 @@
 #include <QStandardPaths>
 #include <QTextStream>
 
-
-
-
 ScheduleWindow::ScheduleWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ScheduleWindow)
-
 {
     ui->setupUi(this);
     setMinimumSize(1200, 900);
-    setMaximumSize(1200, 900);
-
-    qDebug() << "UI setup completed";  // Отладочное сообщение
+    setMaximumSize(1200, 1000);
 
     loadDataFromJson();
-    qDebug() << "Data loaded";  // Отладочное сообщение
-
-    connect(ui->backButton, &QPushButton::clicked, this, &ScheduleWindow::onBackButtonClicked);
-    qDebug() << "Connected back button";  // Отладочное сообщение
 
     QPixmap backgroundPixmap(":/images/menu.png");
-    qDebug() << "Background image loaded";  // Отладочное сообщение
-
     backgroundPixmap = backgroundPixmap.scaled(this->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
     QPalette palette;
     palette.setBrush(QPalette::Window, QBrush(backgroundPixmap));
     this->setPalette(palette);
-    qDebug() << "Background image applied";  // Отладочное сообщение
 
-
-
-    qDebug() << "Window resized";  // Отладочное сообщение
-
-    // Настройка таблицы: 7 строк и 6 столбцов
-    ui->tableWidget->setRowCount(6);
+    ui->tableWidget->setRowCount(7);
     ui->tableWidget->setColumnCount(7);
-    qDebug() << "Table widget setup completed";  // Отладочное сообщение
+
+    ui->tableWidget->setRowHeight(0, 50);
+    for (int i = 1; i < 7; ++i) {
+        ui->tableWidget->setRowHeight(i, 133);
+    }
+
+    QStringList daysOfWeek = {"Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"};
+    for (int column = 0; column < daysOfWeek.size(); ++column) {
+        QTableWidgetItem *item = new QTableWidgetItem(daysOfWeek[column]);
+        item->setTextAlignment(Qt::AlignCenter);
+        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        ui->tableWidget->setItem(0, column, item);
+    }
 
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    qDebug() << "Table widget settings applied";  // Отладочное сообщение
 
-    // Установка ширины и высоты столбцов
     for (int i = 0; i < 7; ++i) {
-        ui->tableWidget->setColumnWidth(i, 118);  // Установить ширину каждой колонки
+        ui->tableWidget->setColumnWidth(i, 118);
     }
 
-    for (int i = 0; i < 6; ++i) {
-        ui->tableWidget->setRowHeight(i, 133);  // Установить высоту каждой строки
+    for (int i = 1; i < 7; ++i) {
+        ui->tableWidget->setRowHeight(i, 130);
     }
-    qDebug() << "Table column and row sizes set";  // Отладочное сообщение
 
-    ui->tableWidget->setFixedSize(830, 800);  // Установить общий размер таблицы
-    qDebug() << "Table widget fixed size set";  // Отладочное сообщение
+    ui->tableWidget->setFixedSize(830, 860);
 
-    // Обработчик нажатий на ячейки
     connect(ui->tableWidget, &QTableWidget::cellPressed, this, &ScheduleWindow::onCellPressed);
     connect(ui->actionCloseMen, &QAction::triggered, this, &ScheduleWindow::onMenuCloseTriggered);
-    qDebug() << "Connections for table widget and menu action completed";  // Отладочное сообщение
 
-    // Создание и добавление прямоугольников
-    QVBoxLayout *leftLayout = new QVBoxLayout();  // Вертикальный layout для прямоугольников
-    int rectWidth = 180;  // Фиксированная ширина прямоугольников
+    QVBoxLayout *leftLayout = new QVBoxLayout();
+    int rectWidth = 180;
     int rectHeight = 100;
 
+    ui->tableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/bed2.png", QColor("#FF6347"), rectWidth, rectHeight, "Убраться"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/dish2.png", QColor("pink"), rectWidth, rectHeight, "Помыть посуду"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/dog2.png", QColor("#4682B4"), rectWidth, rectHeight, "Прогулка"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/flowers2.png", QColor(34, 139, 34), rectWidth, rectHeight, "Полить цветы"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/read2.png", QColor("#FFD700"), rectWidth, rectHeight, "Почитать книгу"));
+    leftLayout->addWidget(new RectangleWidget(this, ":/images/homework2.png", QColor(255, 165, 0), rectWidth, rectHeight, "Сделать д/з"));
 
-    // Добавляем 6 прямоугольников с разными картинками
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/bed.png", QColor("#FF6347"), rectWidth, rectHeight, "Убраться"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/dish.png", QColor("pink"), rectWidth, rectHeight, "Помыть посуду"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/dog.png", QColor("#4682B4"), rectWidth, rectHeight, "Прогулка"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/flowers.png", QColor(34, 139, 34), rectWidth, rectHeight, "Полить цветы"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/read.png", QColor("#FFD700"), rectWidth, rectHeight, "Почитать книгу"));
-    leftLayout->addWidget(new RectangleWidget(this, ":/images/homework.png", QColor(255, 165, 0), rectWidth, rectHeight, "Сделать д/з"));// Цвет "Orange"
+    QHBoxLayout *mainLayout = new QHBoxLayout();
+    mainLayout->addLayout(leftLayout);
+    mainLayout->addWidget(ui->tableWidget);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout();  // Горизонтальный layout для размещения таблицы и прямоугольников
-    mainLayout->addLayout(leftLayout);  // Добавляем вертикальный layout с прямоугольниками
-    mainLayout->addWidget(ui->tableWidget);  // Добавляем таблицу в основной layout
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
 
-}
+    QList<QColor> columnColors = {
+        QColor("#FF6347"),
+        QColor("#4682B4"),
+        QColor("#32CD32"),
+        QColor ("#FFD700"),
+        QColor("#FF69B4"),
+        QColor("#8A2BE2"),
+        QColor("#FF4500")
+    };
 
+    for (int column = 0; column < ui->tableWidget->columnCount(); ++column) {
+        for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
+            QTableWidgetItem *item = ui->tableWidget->item(row, column);
+            if (!item) {
+                item = new QTableWidgetItem();
+                ui->tableWidget->setItem(row, column, item);
+            }
+            item->setBackground(QBrush(columnColors[column]));
+        }
+    }
+}
 
 ScheduleWindow::~ScheduleWindow()
 {
     delete ui;
 }
 
-
 void ScheduleWindow::closeEvent(QCloseEvent *event)
 {
-    saveDataToJson();  // Сохраняем данные перед закрытием
-    event->accept();  // Закрываем окно
+    saveDataToJson();
+    event->accept();
 }
-
-
 
 void ScheduleWindow::onMenuCloseTriggered() {
-    this->close(); // Закрыть окно
-}
-
-#include "mainwindow.h"  // Для доступа к главному окну
-
-void ScheduleWindow::onBackButtonClicked()
-{
-    // Создаём объект главного окна
-    MainWindow *mainWindow = new MainWindow();
-
-    // Показываем главное окно
-    mainWindow->show();
-
-    // Закрываем текущее окно
     this->close();
 }
 
+#include "mainwindow.h"
+
+void ScheduleWindow::onBackButtonClicked()
+{
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->show();
+    this->close();
+}
 
 void ScheduleWindow::onCellPressed(int row, int column) {
+    if (row == 0) {
+        return;
+    }
+
     static QPixmap star(":/images/star.png");
     static QPixmap sad(":/images/sad.png");
 
@@ -158,31 +161,22 @@ void ScheduleWindow::onCellPressed(int row, int column) {
     }
 
     int state = item->data(Qt::UserRole).toInt();
-    qDebug() << "Cell pressed at row:" << row << ", column:" << column;
 
-    // Циклически меняем состояние ячейки
     if (state == 0) {
-        // Устанавливаем изображение звездочки
-        item->setData(Qt::UserRole, 1);  // Устанавливаем состояние как "грустный смайлик"
+        item->setData(Qt::UserRole, 1);
         QLabel *label = new QLabel();
-        label->setPixmap(starScaled);  // Устанавливаем изображение
+        label->setPixmap(starScaled);
         ui->tableWidget->setCellWidget(row, column, label);
     } else if (state == 1) {
-        // Устанавливаем изображение грустного смайлика
-        item->setData(Qt::UserRole, 2);  // Устанавливаем состояние как "пусто"
+        item->setData(Qt::UserRole, 2);
         QLabel *label = new QLabel();
-        label->setPixmap(sadScaled);  // Устанавливаем изображение
+        label->setPixmap(sadScaled);
         ui->tableWidget->setCellWidget(row, column, label);
     } else {
-        // Очищаем ячейку
-        item->setData(Qt::UserRole, 0);  // Устанавливаем состояние как "звезда"
-        ui->tableWidget->removeCellWidget(row, column);  // Удаляем виджет из ячейки
+        item->setData(Qt::UserRole, 0);
+        ui->tableWidget->removeCellWidget(row, column);
     }
 }
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QFile>
 
 void ScheduleWindow::saveDataToJson()
 {
@@ -190,21 +184,18 @@ void ScheduleWindow::saveDataToJson()
     QFile saveFile(filePath);
 
     if (!saveFile.open(QIODevice::WriteOnly)) {
-        qDebug() << "Couldn't open save file.";
         return;
     }
 
     QJsonArray jsonArray;
 
-    // Сохраняем данные из таблицы
     for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
         QJsonObject rowObject;
 
         for (int column = 0; column < ui->tableWidget->columnCount(); ++column) {
             QTableWidgetItem *item = ui->tableWidget->item(row, column);
             if (item) {
-                rowObject[QString("column_%1").arg(column)] = item->data(Qt::UserRole).toInt();  // Исправлено на Qt::User Role
-                qDebug() << "Saving data from cell (" << row << ", " << column << "): " << item->data(Qt::UserRole).toInt();  // Отладочное сообщение
+                rowObject[QString("column_%1").arg(column)] = item->data(Qt::UserRole).toInt();
             }
         }
 
@@ -213,10 +204,7 @@ void ScheduleWindow::saveDataToJson()
 
     QJsonDocument saveDoc(jsonArray);
     saveFile.write(saveDoc.toJson());
-
-    qDebug() << "Saved JSON data: " << saveDoc.toJson();
     saveFile.close();
-    qDebug() << "Data saved to JSON successfully!";
 }
 
 void ScheduleWindow::loadDataFromJson() {
@@ -224,7 +212,6 @@ void ScheduleWindow::loadDataFromJson() {
     QFile loadFile(filePath);
 
     if (!loadFile.open(QIODevice::ReadOnly)) {
-        qDebug() << "Couldn't open load file.";
         return;
     }
 
@@ -233,33 +220,30 @@ void ScheduleWindow::loadDataFromJson() {
     QJsonArray jsonArray = loadDoc.array();
     loadFile.close();
 
-    // Очищаем таблицу перед загрузкой новых данных
     ui->tableWidget->setRowCount(0);
-    ui->tableWidget->setColumnCount(3);  // Убедитесь, что количество столбцов соответствует вашим данным
+    ui->tableWidget->setColumnCount(3);
 
     for (int i = 0; i < jsonArray.size(); ++i) {
         QJsonObject rowObject = jsonArray[i].toObject();
         int row = ui->tableWidget->rowCount();
-        ui->tableWidget->insertRow(row);  // Добавляем новую строку
+        ui->tableWidget->insertRow(row);
 
         for (int column = 0; column < ui->tableWidget->columnCount(); ++column) {
             int state = rowObject[QString("column_%1").arg(column)].toInt();
             QTableWidgetItem *item = new QTableWidgetItem();
-            item->setData(Qt::UserRole, state);  // Устанавливаем состояние
+            item->setData(Qt::UserRole, state);
             ui->tableWidget->setItem(row, column, item);
 
-            // Устанавливаем виджет в ячейку в зависимости от состояния
-            QLabel *label = new QLabel();  // Создаем QLabel
+            QLabel *label = new QLabel();
             if (state == 1) {
                 label->setPixmap(QPixmap(":/images/star.png").scaled(60, 60, Qt::KeepAspectRatio));
             } else if (state == 2) {
                 label->setPixmap(QPixmap(":/images/sad.png").scaled(60, 60, Qt::KeepAspectRatio));
             } else {
-                ui->tableWidget->removeCellWidget(row, column);  // Удаляем виджет, если состояние "пусто"
-                continue;  // Переходим к следующей ячейке
+                ui->tableWidget->removeCellWidget(row, column);
+                continue;
             }
-            ui->tableWidget->setCellWidget(row, column, label);  // Устанавливаем QLabel в ячейку
+            ui->tableWidget->setCellWidget(row, column, label);
         }
     }
-    qDebug() << "Data loaded from JSON successfully!";
 }

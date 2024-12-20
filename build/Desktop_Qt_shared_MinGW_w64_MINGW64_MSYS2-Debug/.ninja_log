@@ -1,61 +1,74 @@
 # ninja log v6
-116	1279	7563165993585997	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
-23021	28492	7563166212018955	CMakeFiles/untitled.dir/ScheduleWindow.cpp.obj	d1cd83fbcf3d8416
-116	1279	7563165993585997	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
-11	834	7563166815642482	build.ninja	60b6b8e9d0c9fab5
-116	1279	7563165993585997	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
-32	42	7563165980608139	clean	9c4b4372737ab8da
-1280	22716	7563166206983740	untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
-22914	27330	7563166210944734	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	41ff5790d2742a44
-116	1279	7563165993585997	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
-33	242	7560593107783486	untitled_autogen/include/ui_ScheduleWindow.h	8f5e0fa4abaf04c0
-7	32	7563165980332489	CMakeFiles/clean.additional	7155004b3956b606
-23032	28066	7563166212133311	CMakeFiles/untitled.dir/todolistwindow.cpp.obj	f14d266f35d10463
-116	1279	7563165993585997	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
-116	1279	7563165993585997	untitled_autogen/timestamp	8f5e0fa4abaf04c0
-9421	10673	7562824252515577	untitled.exe	6dc758fb087e1922
-33	242	7560593107783486	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_ScheduleWindow.h	8f5e0fa4abaf04c0
-2820	26120	7562537626200171	CMakeFiles/untitled.dir/untitled_autogen/EWIEGA46WW/qrc_resources.cpp.obj	9e5ca47a98d2f3ef
-116	1279	7563165993585997	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
-22978	26211	7563166211591230	CMakeFiles/untitled.dir/main.cpp.obj	b74d4a78bd2894fa
-116	1279	7563165993585997	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
-23054	28013	7563166212345484	CMakeFiles/untitled.dir/rectanglewidget.cpp.obj	913b348e76a2f7f8
-22990	27558	7563166211697474	CMakeFiles/untitled.dir/mainwindow.cpp.obj	bf16680a640f4202
-1280	22716	7563166206983740	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
-116	1279	7563165993585997	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
-116	1279	7563165993585997	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
-31	1356	7563166815642482	build.ninja	60b6b8e9d0c9fab5
-110	307	7563166817202757	untitled_autogen/timestamp	8f5e0fa4abaf04c0
-110	307	7563166817202757	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
-110	307	7563166817202757	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
-110	307	7563166817202757	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
-110	307	7563166817202757	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
-110	307	7563166817202757	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
-110	307	7563166817202757	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
-110	307	7563166817202757	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
-110	307	7563166817202757	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
-110	307	7563166817202757	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
-309	1748	7563166833168604	untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
-309	1748	7563166833168604	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
-8	45	7563167032847151	CMakeFiles/clean.additional	7155004b3956b606
-45	59	7563167033259314	clean	9c4b4372737ab8da
-16	1034	7563167070144496	untitled_autogen/timestamp	8f5e0fa4abaf04c0
-16	1034	7563167070144496	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
-16	1034	7563167070144496	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
-16	1034	7563167070144496	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
-16	1034	7563167070144496	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
-16	1034	7563167070144496	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
-16	1034	7563167070144496	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
-16	1034	7563167070144496	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
-16	1034	7563167070144496	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
-16	1034	7563167070144496	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
-1035	2232	7563167082395065	untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
-1035	2232	7563167082395065	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
-2239	4581	7563167082950744	CMakeFiles/untitled.dir/main.cpp.obj	b74d4a78bd2894fa
-2232	5425	7563167082885060	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	41ff5790d2742a44
-2260	5784	7563167083134693	CMakeFiles/untitled.dir/rectanglewidget.cpp.obj	913b348e76a2f7f8
+50	491	7563239142923132	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+2910	12005	7563239171519745	CMakeFiles/untitled.dir/ScheduleWindow.cpp.obj	d1cd83fbcf3d8416
+493	2909	7563239170573019	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
 2243	5918	7563167082994074	CMakeFiles/untitled.dir/mainwindow.cpp.obj	bf16680a640f4202
-2249	6225	7563167083024391	CMakeFiles/untitled.dir/ScheduleWindow.cpp.obj	d1cd83fbcf3d8416
+482	5892	7563229613142730	CMakeFiles/untitled.dir/rectanglewidget.cpp.obj	913b348e76a2f7f8
+50	491	7563239142923132	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+2239	4581	7563167082950744	CMakeFiles/untitled.dir/main.cpp.obj	b74d4a78bd2894fa
+50	491	7563239142923132	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+2957	41782	7563239171993240	CMakeFiles/untitled.dir/untitled_autogen/EWIEGA46WW/qrc_resources.cpp.obj	9e5ca47a98d2f3ef
+33	242	7560593107783486	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_ScheduleWindow.h	8f5e0fa4abaf04c0
+41782	42439	7563239560245546	untitled.exe	6dc758fb087e1922
+50	491	7563239142923132	untitled_autogen/timestamp	8f5e0fa4abaf04c0
+50	491	7563239142923132	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+50	491	7563239142923132	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+31	1356	7563240233706485	build.ninja	60b6b8e9d0c9fab5
+50	491	7563239142923132	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
+45	59	7563167033259314	clean	9c4b4372737ab8da
+493	2909	7563239170573019	untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
+2232	5425	7563167082885060	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	41ff5790d2742a44
+50	491	7563239142923132	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+33	242	7560593107783486	untitled_autogen/include/ui_ScheduleWindow.h	8f5e0fa4abaf04c0
+8	45	7563167032847151	CMakeFiles/clean.additional	7155004b3956b606
 2255	6397	7563167083094552	CMakeFiles/untitled.dir/todolistwindow.cpp.obj	f14d266f35d10463
-2266	20727	7563167083213874	CMakeFiles/untitled.dir/untitled_autogen/EWIEGA46WW/qrc_resources.cpp.obj	9e5ca47a98d2f3ef
-20727	21132	7563167267826135	untitled.exe	6dc758fb087e1922
+50	491	7563239142923132	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+50	491	7563239142923132	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+40	426	7563240238930013	untitled_autogen/timestamp	8f5e0fa4abaf04c0
+40	426	7563240238930013	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+40	426	7563240238930013	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+40	426	7563240238930013	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+40	426	7563240238930013	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+40	426	7563240238930013	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
+40	426	7563240238930013	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+40	426	7563240238930013	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+40	426	7563240238930013	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+40	426	7563240238930013	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+428	2710	7563240264899307	untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
+428	2710	7563240264899307	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/EWIEGA46WW/qrc_resources.cpp	bfbec4b7f70e8141
+2710	39404	7563240265624126	CMakeFiles/untitled.dir/untitled_autogen/EWIEGA46WW/qrc_resources.cpp.obj	9e5ca47a98d2f3ef
+39404	40017	7563240632564443	untitled.exe	6dc758fb087e1922
+44	491	7563241324655534	untitled_autogen/timestamp	8f5e0fa4abaf04c0
+44	491	7563241324655534	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+44	491	7563241324655534	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+44	491	7563241324655534	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+44	491	7563241324655534	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+44	491	7563241324655534	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
+44	491	7563241324655534	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+44	491	7563241324655534	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+44	491	7563241324655534	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+44	491	7563241324655534	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+39	472	7563242171742953	untitled_autogen/timestamp	8f5e0fa4abaf04c0
+39	472	7563242171742953	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+39	472	7563242171742953	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+39	472	7563242171742953	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+39	472	7563242171742953	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+39	472	7563242171742953	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
+39	472	7563242171742953	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+39	472	7563242171742953	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+39	472	7563242171742953	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+39	472	7563242171742953	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+475	8166	7563242176092311	CMakeFiles/untitled.dir/ScheduleWindow.cpp.obj	d1cd83fbcf3d8416
+8166	8828	7563242253002685	untitled.exe	6dc758fb087e1922
+40	477	7563242806713070	untitled_autogen/timestamp	8f5e0fa4abaf04c0
+40	477	7563242806713070	untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+40	477	7563242806713070	untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+40	477	7563242806713070	untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+40	477	7563242806713070	untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+40	477	7563242806713070	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/timestamp	8f5e0fa4abaf04c0
+40	477	7563242806713070	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/mocs_compilation.cpp	8f5e0fa4abaf04c0
+40	477	7563242806713070	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_mainwindow.h	8f5e0fa4abaf04c0
+40	477	7563242806713070	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_schedulewindow.h	8f5e0fa4abaf04c0
+40	477	7563242806713070	C:/Users/pprik/Documents/QT COURSE/untitled/build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/untitled_autogen/include/ui_todolistwindow.h	8f5e0fa4abaf04c0
+480	8042	7563242811119259	CMakeFiles/untitled.dir/ScheduleWindow.cpp.obj	d1cd83fbcf3d8416
+8042	8605	7563242886735064	untitled.exe	6dc758fb087e1922

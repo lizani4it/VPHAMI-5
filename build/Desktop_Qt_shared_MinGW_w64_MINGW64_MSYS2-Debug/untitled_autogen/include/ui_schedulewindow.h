@@ -17,7 +17,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
@@ -38,7 +37,6 @@ public:
     QLabel *MD_5;
     QLabel *MD_6;
     QLabel *MD_7;
-    QPushButton *backButton;
     QFrame *frame;
     QFrame *line;
     QMenuBar *menubar;
@@ -94,9 +92,6 @@ public:
         MD_7 = new QLabel(centralwidget);
         MD_7->setObjectName("MD_7");
         MD_7->setGeometry(QRect(880, 40, 63, 20));
-        backButton = new QPushButton(centralwidget);
-        backButton->setObjectName("backButton");
-        backButton->setGeometry(QRect(160, 170, 931, 481));
         frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
         frame->setGeometry(QRect(620, 450, 120, 80));
@@ -133,7 +128,6 @@ public:
         MD_5->setText(QCoreApplication::translate("ScheduleWindow", "\320\237\320\242", nullptr));
         MD_6->setText(QCoreApplication::translate("ScheduleWindow", "\320\241\320\221", nullptr));
         MD_7->setText(QCoreApplication::translate("ScheduleWindow", "\320\222\320\241", nullptr));
-        backButton->setText(QCoreApplication::translate("ScheduleWindow", "\320\235\320\260\320\267\320\260\320\264 \320\262 \320\234\320\265\320\275\321\216", nullptr));
     } // retranslateUi
 
 };

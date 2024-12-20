@@ -15,5 +15,11 @@
         <file>images/menuBIG.jpg</file>
         <file>images/MENU3.jpg</file>
         <file>images/menu1.jpg</file>
+        <file>images/bed2.png</file>
+        <file>images/dish2.png</file>
+        <file>images/dog2.png</file>
+        <file>images/flowers2.png</file>
+        <file>images/homework2.png</file>
+        <file>images/read2.png</file>
     </qresource>
 </RCC>

@@ -32,11 +32,11 @@ RectangleWidget::RectangleWidget(QWidget *parent, const QString &defaultImage, c
     textLabel = new QLabel(text, this);  // Use the passed text
     textLabel->setAlignment(Qt::AlignLeft | Qt::AlignBottom);
     textLabel->setFont(QFont("Arial", 12, QFont::Bold));
-    textAndButtonLayout->addWidget(textLabel); // Добавляем текст в горизонтальный layout
+    textAndButtonLayout->addWidget(textLabel);
 
     gearButton = new QPushButton("⚙", this);
-    gearButton->setFixedSize(30, 30);  // Уменьшаем размер кнопки
-    gearButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);  // Устанавливаем фиксированный размер
+    gearButton->setFixedSize(30, 30);
+    gearButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     textAndButtonLayout->addWidget(gearButton);
 
     layout->addLayout(textAndButtonLayout);
